@@ -12,6 +12,10 @@ opencv-python = "^4.1"
 nuitka = "^0.6.5"
 imutils = "^0.5.3"
 mss = "^4.0"
+pyinstaller = "^3.5"
+pywin32-ctypes = "^0.2.0"
+pefile = "^2019.4"
+fbs = "^0.8.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
