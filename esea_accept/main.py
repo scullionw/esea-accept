@@ -3,20 +3,22 @@ import sys
 import time
 import cv2
 import numpy as np
+import mss
 import imutils
 
 
 def main():
-    while True:
-        start = time.process_time()
-        coords = locate_fast_dpi_aware("argus.png")
-        print(time.process_time() - start)
-        if coords is not None:
-            pyautogui.click(*coords)
-            break
-        # time.sleep(2)
+    with mss.mss() as sct:
+        while True:
+            start = time.process_time()
+            coords = locate_fast_dpi_aware(sct, "argus.png")
+            print(time.process_time() - start)
+            if coords is not None:
+                pyautogui.click(*coords)
+                break
+            # time.sleep(0.5)
 
-    print("Clicked!")
+        print("Clicked!")
 
 
 def locate(image):
@@ -26,9 +28,9 @@ def locate(image):
         return None
 
 
-def locate_fast_dpi_aware(image, precision=0.7, base_scaling=0.25):
+def locate_fast_dpi_aware(sct, image, precision=0.7, base_scaling=0.25):
     # Screenshot
-    im = pyautogui.screenshot()
+    im = sct.grab(sct.monitors[0])
 
     img_rgb = np.array(im)
     img_rgb = imutils.resize(img_rgb, width=int(img_rgb.shape[1] * base_scaling))

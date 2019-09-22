@@ -11,6 +11,7 @@ numpy = "^1.17"
 opencv-python = "^4.1"
 nuitka = "^0.6.5"
 imutils = "^0.5.3"
+mss = "^4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
