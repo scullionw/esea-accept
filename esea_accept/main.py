@@ -42,7 +42,6 @@ def locate_fast_dpi_aware(sct, image, precision=0.7, base_scaling=0.25):
     # Template scaling
     for dpi_scale in [0.5, 0.625, 0.75, 0.875, 1]:
 
-        template = cv2.imread(image, 0)
         template = imutils.resize(
             template_raw, width=int(template_raw.shape[1] * base_scaling * dpi_scale)
         )
