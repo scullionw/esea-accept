@@ -9,11 +9,10 @@ import imutils
 def main():
     while True:
         start = time.process_time()
-        coords = locate_fast_scale_invariant("argus.png")
+        coords = locate_fast_dpi_aware("argus.png")
         print(time.process_time() - start)
         if coords is not None:
-            x, y = coords
-            pyautogui.click(x, y)
+            pyautogui.click(*coords)
             break
         # time.sleep(2)
 
@@ -27,45 +26,7 @@ def locate(image):
         return None
 
 
-def locate_fast(image):
-    pos = imagesearch(image)
-    if pos[0] != -1:
-        return get_center(pos, image)
-    else:
-        return None
-
-
-def locate_fast_scale_invariant(image):
-    pos = imagesearch_scale_invariant(image)
-    if pos[0] != -1:
-        return get_center(pos, image)
-    else:
-        return None
-
-
-def get_center(pos, image):
-    img = cv2.imread(image)
-    height, width, _ = img.shape
-    x, y = pos[0] + (width / 2), pos[1] + (height / 2)
-    return x, y
-
-
-def imagesearch(image, precision=0.8):
-    im = pyautogui.screenshot()
-
-    img_rgb = np.array(im)
-    img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
-    template = cv2.imread(image, 0)
-    template.shape[::-1]
-
-    res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
-    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
-    if max_val < precision:
-        return [-1, -1]
-    return max_loc
-
-
-def imagesearch_scale_invariant(image, precision=0.9, base_scaling=0.05):
+def locate_fast_dpi_aware(image, precision=0.7, base_scaling=0.25):
     # Screenshot
     im = pyautogui.screenshot()
 
@@ -74,19 +35,28 @@ def imagesearch_scale_invariant(image, precision=0.9, base_scaling=0.05):
     img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
 
     # Template
-    template = cv2.imread(image, 0)
-    template = imutils.resize(template, width=int(template.shape[1] * base_scaling))
-    template.shape[::-1]
+    template_raw = cv2.imread(image, 0)
 
-    # Matching
-    res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
-    _, max_val, _, max_loc = cv2.minMaxLoc(res)
+    # Template scaling
+    for dpi_scale in [0.5, 0.625, 0.75, 0.875, 1]:
 
-    if max_val < precision:
-        return [-1, -1]
+        template = cv2.imread(image, 0)
+        template = imutils.resize(
+            template_raw, width=int(template_raw.shape[1] * base_scaling * dpi_scale)
+        )
+        template.shape[::-1]
 
-    print(max_val)
-    return [int(c / base_scaling) for c in max_loc]
+        # Matching
+        res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
+        _, max_val, _, max_loc = cv2.minMaxLoc(res)
+
+        if max_val > precision:
+            print(max_val, dpi_scale)
+            x, y = [int(c / base_scaling) for c in max_loc]
+            height, width = [int(d / base_scaling) for d in template.shape]
+            return x + (width / 2), y + (height / 2)
+
+    return None
 
 
 if __name__ == "__main__":
