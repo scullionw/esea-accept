@@ -3,9 +3,10 @@ import sys
 import time
 from esea_accept import imagesearch
 
+
 def main():
     while True:
-        coords = locate("findmatch.png")
+        coords = locate("argus.png")
         if coords is not None:
             x, y = coords
             pyautogui.click(x, y)
@@ -14,12 +15,13 @@ def main():
 
     print("Clicked!")
 
+
 def locate(image):
     try:
-        return pyautogui.locateCenterOnScreen(image)  
+        return pyautogui.locateCenterOnScreen(image)
     except TypeError:
         return None
-    
+
 
 if __name__ == "__main__":
     sys.exit(main())
