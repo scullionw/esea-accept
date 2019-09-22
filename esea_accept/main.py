@@ -1,6 +1,7 @@
 import pyautogui
 import sys
 import time
+from esea_accept import imagesearch
 
 def main():
     while True:
