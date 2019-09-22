@@ -9,6 +9,8 @@ python = "^3.7"
 pyautogui = "^0.9.47"
 numpy = "^1.17"
 opencv-python = "^4.1"
+nuitka = "^0.6.5"
+imutils = "^0.5.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
