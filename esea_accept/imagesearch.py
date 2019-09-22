@@ -8,9 +8,11 @@ import subprocess
 
 is_retina = False
 if platform.system() == "Darwin":
-    is_retina = subprocess.call("system_profiler SPDisplaysDataType | grep 'retina'", shell=True)
+    is_retina = subprocess.call(
+        "system_profiler SPDisplaysDataType | grep 'retina'", shell=True
+    )
 
-'''
+"""
 
 grabs a region (topx, topy, bottomx, bottomy)
 to the tuple (topx, topy, width, height)
@@ -19,11 +21,12 @@ input : a tuple containing the 4 coordinates of the region to capture
 
 output : a PIL image of the area selected.
 
-'''
+"""
 
 
 def region_grabber(region):
-    if is_retina: region = [n * 2 for n in region]
+    if is_retina:
+        region = [n * 2 for n in region]
     x1 = region[0]
     y1 = region[1]
     width = region[2] - x1
@@ -32,7 +35,7 @@ def region_grabber(region):
     return pyautogui.screenshot(region=(x1, y1, width, height))
 
 
-'''
+"""
 
 Searchs for an image within an area
 
@@ -49,7 +52,7 @@ im : a PIL image, usefull if you intend to search the same unchanging region for
 returns :
 the top left corner coordinates of the element if found as an array [x,y] or [-1,-1] if not
 
-'''
+"""
 
 
 def imagesearcharea(image, x1, y1, x2, y2, precision=0.8, im=None):
@@ -70,7 +73,7 @@ def imagesearcharea(image, x1, y1, x2, y2, precision=0.8, im=None):
     return max_loc
 
 
-'''
+"""
 
 click on the center of an image with a bit of random.
 eg, if an image is 100*100 with an offset of 5 it may click at 52,50 the first time and then 55,53 etc
@@ -84,18 +87,19 @@ image : path to the image file (see opencv imread for supported types)
 pos : array containing the position of the top left corner of the image [x,y]
 action : button of the mouse to activate : "left" "right" "middle", see pyautogui.click documentation for more info
 time : time taken for the mouse to move from where it was to the new position
-'''
+"""
 
 
 def click_image(image, pos, action, timestamp, offset=5):
     img = cv2.imread(image)
     height, width, channels = img.shape
-    pyautogui.moveTo(pos[0] + r(width / 2, offset), pos[1] + r(height / 2, offset),
-                     timestamp)
+    pyautogui.moveTo(
+        pos[0] + r(width / 2, offset), pos[1] + r(height / 2, offset), timestamp
+    )
     pyautogui.click(button=action)
 
 
-'''
+"""
 Searchs for an image on the screen
 
 input :
@@ -107,7 +111,7 @@ im : a PIL image, usefull if you intend to search the same unchanging region for
 returns :
 the top left corner coordinates of the element if found as an array [x,y] or [-1,-1] if not
 
-'''
+"""
 
 
 def imagesearch(image, precision=0.8):
@@ -127,7 +131,7 @@ def imagesearch(image, precision=0.8):
     return max_loc
 
 
-'''
+"""
 Searchs for an image on screen continuously until it's found.
 
 input :
@@ -138,7 +142,7 @@ precision : the higher, the lesser tolerant and fewer false positives are found 
 returns :
 the top left corner coordinates of the element if found as an array [x,y] 
 
-'''
+"""
 
 
 def imagesearch_loop(image, timesample, precision=0.8):
@@ -150,7 +154,7 @@ def imagesearch_loop(image, timesample, precision=0.8):
     return pos
 
 
-'''
+"""
 Searchs for an image on screen continuously until it's found or max number of samples reached.
 
 input :
@@ -162,7 +166,7 @@ precision : the higher, the lesser tolerant and fewer false positives are found 
 returns :
 the top left corner coordinates of the element if found as an array [x,y] 
 
-'''
+"""
 
 
 def imagesearch_numLoop(image, timesample, maxSamples, precision=0.8):
@@ -178,7 +182,7 @@ def imagesearch_numLoop(image, timesample, maxSamples, precision=0.8):
     return pos
 
 
-'''
+"""
 Searchs for an image on a region of the screen continuously until it's found.
 
 input :
@@ -193,7 +197,7 @@ precision : the higher, the lesser tolerant and fewer false positives are found 
 returns :
 the top left corner coordinates of the element as an array [x,y] 
 
-'''
+"""
 
 
 def imagesearch_region_loop(image, timesample, x1, y1, x2, y2, precision=0.8):
@@ -205,7 +209,7 @@ def imagesearch_region_loop(image, timesample, x1, y1, x2, y2, precision=0.8):
     return pos
 
 
-'''
+"""
 Searches for an image on the screen and counts the number of occurrences.
 
 input :
@@ -216,7 +220,7 @@ returns :
 the number of times a given image appears on the screen.
 optionally an output image with all the occurances boxed with a red outline.
 
-'''
+"""
 
 
 def imagesearch_count(image, precision=0.9):
