@@ -30,7 +30,7 @@ from esea_accept.reactor import *
 
 def main():
     appctxt = ApplicationContext()
-    template_path = appctxt.get_resource("argus.png")
+    template_path = appctxt.get_resource("pattern.png")
     appctxt.app.setStyle("Fusion")
     window = MainWindow(template_path)
     window.show()
@@ -48,7 +48,7 @@ class MainWindow(QWidget):
 
         # Window settings
         self.setLayout(self.layout)
-        self.setFixedSize(150, 100)
+        self.setFixedSize(300, 200)
 
     def create_run_button(self):
         self.run_button = QPushButton("Run!")

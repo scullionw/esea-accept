@@ -6,11 +6,11 @@ import numpy as np
 import mss
 import imutils
 
-BASE_SCALING = 0.25
+BASE_SCALING = 0.5
 
 
 def main():
-    react("argus.png")
+    react("pattern.png")
 
 
 def react(template_path):
@@ -50,7 +50,7 @@ def generate_templates(filename):
     return templates
 
 
-def locate_fast_dpi_aware(sct, templates, precision=0.7):
+def locate_fast_dpi_aware(sct, templates, precision=0.9):
     # Screenshot
     im = sct.grab(sct.monitors[0])
 
@@ -67,7 +67,7 @@ def locate_fast_dpi_aware(sct, templates, precision=0.7):
         _, max_val, _, max_loc = cv2.minMaxLoc(res)
 
         if max_val > precision:
-            # print(max_val, dpi_scale)
+            print(max_val, dpi_scale)
             x, y = [int(c / BASE_SCALING) for c in max_loc]
             height, width = [int(d / BASE_SCALING) for d in template.shape]
             return x + (width / 2), y + (height / 2)
