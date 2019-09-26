@@ -1680,6 +1680,25 @@ version = "1.7.0"
 
 [[package]]
 category = "main"
+description = ""
+name = "pypiwin32"
+optional = false
+python-versions = "*"
+version = "223"
+
+[package.dependencies]
+pywin32 = ">=223"
+
+[[package]]
+category = "main"
+description = "Python bindings for the Qt cross platform UI and application toolkit"
+name = "pyqt5"
+optional = false
+python-versions = "*"
+version = "5.9.2"
+
+[[package]]
+category = "main"
 description = "PyRect is a simple module with a Rect class for Pygame-like rectangular areas."
 name = "pyrect"
 optional = false
@@ -1734,11 +1753,27 @@ version = "1.0.3"
 
 [[package]]
 category = "main"
+description = "Python for Window Extensions"
+name = "pywin32"
+optional = false
+python-versions = "*"
+version = "225"
+
+[[package]]
+category = "main"
 description = ""
 name = "pywin32-ctypes"
 optional = false
 python-versions = "*"
 version = "0.2.0"
+
+[[package]]
+category = "main"
+description = "Python extension module generator for C and C++ libraries"
+name = "sip"
+optional = false
+python-versions = "*"
+version = "4.19.8"
 
 [[package]]
 category = "dev"
@@ -1761,7 +1796,7 @@ version = "0.6.0"
 more-itertools = "*"
 
 [metadata]
-content-hash = "c8ffaa3e7cf2b04290325af385a09df52855935879d756b1fcca7844f35df284"
+content-hash = "ae1013d407f35535e2963a1fca827a511c32f63a30b38bcb1acce74fc9cd8b93"
 python-versions = "^3.7"
 
 [metadata.hashes]
@@ -1890,11 +1925,15 @@ pyobjc-framework-vision = ["2305096a0695457c6b11034965513da3d401bac00867f1adba2a
 pyobjc-framework-webkit = ["0c4c721ed5c908d866ca0588b78f8e0a0e63819a74856b5b649f35b4caed462a", "330f5df93579bc5e8e0016516f5ab40f319a6c91ed0343f8459c88e1a1af3797", "51897e8a5d031c2603e3bbe43a20d832fe9b35924245f230a65e16b7c7e72fca", "53ebbb7a79cdbbdb85db4398171285b1a183079f15d2be682c4fb1920268751b", "716f6809dd11ed0c503683ba4760afcd28dbf6285dbb90476f29ce96a65a72a5", "7c094ee60dd112dfe254558f4b95630bcde84d3a45c1554f9f8c8c16d2aa6dd0", "a36c5610ca0cc522218fcd0b0a10cc1afd59b51728479461c497c0ebea6b898e", "a596cd611e965fdb5b02f4f692747de63beb775c7a168ae12d57f5e9e0a5d47c", "ffec76a327d3a0922399acb40900d8a1fbf2f946ab083b6c025bd6c58764d134"]
 pyobjc-framework-xgridfoundation = ["5b77ca09d9d73ab0af261ec6787a0a9a30a4dbe18e6ba2beee4f2a07050fc51d", "6c9f215d218951d28bbb138289b56223da0f86d015266005cb3f61d950e3cb14"]
 pyperclip = ["979325468ccf682104d5dcaf753f869868100631301d3e72f47babdea5700d1c"]
+pypiwin32 = ["67adf399debc1d5d14dffc1ab5acacb800da569754fafdc576b2a039485aa775", "71be40c1fbd28594214ecaecb58e7aa8b708eabfa0125c8a109ebd51edbd776a"]
+pyqt5 = ["1abd07467539f26e2e08e26cf27f3513d02c20d038f5ba2e860b5e158cf2f8b1", "53cdaf2e27945c4828c5c346410208a68017ddb7d333e7885b9087ddb02e7de0", "5dab7244b6932606490b47a0692e03d7b72d89f7d3dfa3d147a8b34d6af72451", "c83b5dabf950e47d0ea3f324a80640d25ae4d0ed90013a45f824498b2110ff84"]
 pyrect = ["3b2fa7353ce32a11aa6b0a15495968d2a763423c8947ae248b92c037def4e202"]
 pyscreeze = ["b3754827173421ed73a374be3fda649d52826b57e063cb1b97be67b3c220e9b6"]
 pytest = ["3f193df1cfe1d1609d4c583838bea3d532b18d6160fd3f55c9447fdca30848ec", "e246cf173c01169b9617fc07264b7b1316e78d7a650055235d6d897bc80d9660"]
 python3-xlib = ["dc4245f3ae4aa5949c1d112ee4723901ade37a96721ba9645f2bfa56e5b383f8"]
 pytweening = ["4b608a570f4dccf2201e898f643c2a12372eb1d71a3dbc7e778771b603ca248b"]
+pywin32 = ["0443e9bb196e72480f50cbddc2cf98fbb858a77d02e281ba79489ea3287b36e9", "09bbe7cdb29eb40ab2e83f7a232eeeedde864be7a0622b70a90f456aad07a234", "0d8e0f47808798d320c983574c36c49db642678902933a210edd40157d206fd0", "0db7c9f4b93528afd080d35912a60be2f86a1d6c49c0a9cf9cedd106eed81ea3", "749e590875051661ecefbd9dfa957a485016de0f25e43f5e70f888ef1e29587b", "779d3e9d4b934f2445d2920c3941416d99af72eb7f7fd57a63576cc8aa540ad6", "7c89d2c11a31c7aaa16dc4d25054d7e0e99d6f6b24193cf62c83850484658c87", "81f7732b662c46274d7d8c411c905d53e71999cba95457a0686467c3ebc745ca", "9db1fb8830bfa99c5bfd335d4482c14db5c6f5028db3b006787ef4200206242b", "bd8d04835db28646d9e07fd0ab7c7b18bd90e89dfdc559e60389179495ef30da", "fc6822a68afd79e97b015985dd455767c72009b81bcd18957068626c43f11e75", "fe6cfc2045931866417740b575231c7e12d69d481643be1493487ad53b089959"]
 pywin32-ctypes = ["24ffc3b341d457d48e8922352130cf2644024a4ff09762a2261fd34c36ee5942", "9dc2d991b3479cc2df15930958b674a48a227d5361d413827a4cfd0b5876fc98"]
+sip = ["09f9a4e6c28afd0bafedb26ffba43375b97fe7207bd1a0d3513f79b7d168b331", "105edaaa1c8aa486662226360bd3999b4b89dd56de3e314d82b83ed0587d8783", "1bb10aac55bd5ab0e2ee74b3047aa2016cfa7932077c73f602a6f6541af8cd51", "265ddf69235dd70571b7d4da20849303b436192e875ce7226be7144ca702a45c", "52074f7cb5488e8b75b52f34ec2230bc75d22986c7fe5cd3f2d266c23f3349a7", "5ff887a33839de8fc77d7f69aed0259b67a384dc91a1dc7588e328b0b980bde2", "74da4ddd20c5b35c19cda753ce1e8e1f71616931391caeac2de7a1715945c679", "7d69e9cf4f8253a3c0dfc5ba6bb9ac8087b8239851f22998e98cb35cfe497b68", "97bb93ee0ef01ba90f57be2b606e08002660affd5bc380776dd8b0fcaa9e093a", "cf98150a99e43fda7ae22abe655b6f202e491d6291486548daa56cb15a2fcf85", "d9023422127b94d11c1a84bfa94933e959c484f2c79553c1ef23c69fe00d25f8", "e72955e12f4fccf27aa421be383453d697b8a44bde2cc26b08d876fd492d0174"]
 six = ["3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c", "d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"]
 zipp = ["3718b1cbcd963c7d4c5511a8240812904164b7f381b647143a89d3b98f9bcd8e", "f06903e9f1f43b12d371004b4ac7b06ab39a44adc747266928ae6debfa7b3335"]

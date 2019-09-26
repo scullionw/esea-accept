@@ -10,18 +10,22 @@ BASE_SCALING = 0.25
 
 
 def main():
-    templates = generate_templates("argus.png")
+    react("argus.png")
+
+
+def react(template_path):
+    templates = generate_templates(template_path)
     with mss.mss() as sct:
         while True:
-            start = time.process_time()
+            # start = time.process_time()
             coords = locate_fast_dpi_aware(sct, templates)
-            print(time.process_time() - start)
+            # print(time.process_time() - start)
             if coords is not None:
                 pyautogui.click(*coords)
                 break
-            # time.sleep(0.5)
+            time.sleep(1)
 
-        print("Clicked!")
+        # print("Clicked!")
 
 
 def locate(image):
@@ -63,7 +67,7 @@ def locate_fast_dpi_aware(sct, templates, precision=0.7):
         _, max_val, _, max_loc = cv2.minMaxLoc(res)
 
         if max_val > precision:
-            print(max_val, dpi_scale)
+            # print(max_val, dpi_scale)
             x, y = [int(c / BASE_SCALING) for c in max_loc]
             height, width = [int(d / BASE_SCALING) for d in template.shape]
             return x + (width / 2), y + (height / 2)
@@ -73,4 +77,3 @@ def locate_fast_dpi_aware(sct, templates, precision=0.7):
 
 if __name__ == "__main__":
     sys.exit(main())
-

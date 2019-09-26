@@ -1,4 +1,8 @@
-main.dist
+!base.json
+
+*.dist
+
+
 .venv
 # Created by https://www.gitignore.io/api/linux,macos,python,pycharm,windows,visualstudio,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=linux,macos,python,pycharm,windows,visualstudio,visualstudiocode
